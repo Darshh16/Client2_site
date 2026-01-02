@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Riddhi Siddhi Rolling Shutter{% endblock %}</title>
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
@@ -16,7 +19,7 @@
     <meta name="description"
         content="{% block meta_description %}Riddhi Siddhi Rolling Shutter - Leading manufacturer of premium rolling shutters, motorized gates, and industrial doors in Maharashtra. 10+ years experience, serving Mumbai, Pune, Vasai, and more.{% endblock %}">
     <meta name="keywords"
-        content="rolling shutters, motorized rolling shutters, industrial doors, sliding gates, high speed doors, fire rated shutters, GI rolling shutters, aluminium shutters, Maharashtra, Mumbai, Pune, Vasai">
+        content="{% block meta_keywords %}rolling shutters, motorized rolling shutters, industrial doors, sliding gates, high speed doors, fire rated shutters, GI rolling shutters, aluminium shutters, Maharashtra, Mumbai, Pune, Vasai{% endblock %}">
     <meta name="author" content="Riddhi Siddhi Rolling Shutter">
     <meta name="robots" content="index, follow">
 
@@ -28,7 +31,9 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:image"
-        content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/logo.png' %}{% endblock %}">
+        content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}{% endblock %}">
+    <meta property="og:site_name" content="Riddhi Siddhi Rolling Shutter">
+    <meta property="og:locale" content="en_IN">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -36,9 +41,36 @@
     <meta name="twitter:description"
         content="{% block twitter_description %}Premium rolling shutters and industrial doors manufacturer in Maharashtra{% endblock %}">
 
+    <!-- Structured Data - Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Riddhi Siddhi Rolling Shutter",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-98330-10277",
+            "contactType": "sales",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Hindi"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Gala No 4 and 4/c Bldg No 10, Abhilasha Ind Estate, Opp Golden Cheriot Hotel",
+            "addressLocality": "Vasai East",
+            "addressRegion": "Maharashtra",
+            "postalCode": "401208",
+            "addressCountry": "IN"
+        },
+        "sameAs": []
+    }
+    </script>
+    {% block structured_data %}{% endblock %}
+
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Icons (optional, e.g. FontAwesome currently not included but maybe needed later) -->
 </head>
 
 <body>
@@ -76,11 +108,9 @@
             <div style="display: flex; align-items: center; gap: 2rem; font-size: 0.9rem;">
                 <div>
                     <div style="font-weight: 700; color: #333;">riddhisiddhirollingshutter@yahoo.com</div>
-                    <a href="#" style="color: #666; text-decoration: none;">Leave a request</a>
                 </div>
                 <div>
                     <div style="font-weight: 700; color: #333;">98330 10277 / 98338 90090</div>
-                    <a href="#" style="color: #666; text-decoration: none;">Callback</a>
                 </div>
             </div>
         </div>

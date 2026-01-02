@@ -1,6 +1,51 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}{{ product.name }} | Riddhi Siddhi{% endblock %}
+{% block title %}{{ product.name }} - Rolling Shutter | Riddhi Siddhi{% endblock %}
+
+{% block meta_description %}{{ product.description|truncatewords:30 }} Buy premium {{ product.name }} from Riddhi Siddhi
+Rolling Shutter. Quality manufacturing, expert installation, lifetime support in Maharashtra.{% endblock %}
+
+{% block meta_keywords %}{{ product.name }}, {{ product.category.name }}, rolling shutter, industrial door, Riddhi
+Siddhi, Maharashtra, Mumbai, Vasai{% endblock %}
+
+{% block og_title %}{{ product.name }} | Riddhi Siddhi Rolling Shutter{% endblock %}
+{% block og_description %}{{ product.description|truncatewords:25 }}{% endblock %}
+{% block og_image %}{% if product.image %}{{ request.scheme }}://{{ request.get_host }}{{ product.image.url }}{% else
+%}{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}{% endif %}{% endblock %}
+
+{% block twitter_title %}{{ product.name }} | Riddhi Siddhi{% endblock %}
+{% block twitter_description %}{{ product.description|truncatewords:20 }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ product.name }}",
+    "description": "{{ product.description|truncatewords:50 }}",
+    "image": "{% if product.image %}{{ request.scheme }}://{{ request.get_host }}{{ product.image.url }}{% endif %}",
+    "brand": {
+        "@type": "Brand",
+        "name": "Riddhi Siddhi Rolling Shutter"
+    },
+    "manufacturer": {
+        "@type": "Organization",
+        "name": "Riddhi Siddhi Rolling Shutter"
+    },
+    "category": "{{ product.category.name }}",
+    "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+            "@type": "Organization",
+            "name": "Riddhi Siddhi Rolling Shutter"
+        }
+    }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="section" style="padding-top: 8rem;">
@@ -69,7 +114,7 @@
             <div style="margin-top: 3rem;">
                 <a href="https://wa.me/{{ product.whatsapp_number|cut:'+'|cut:' ' }}?text=Hi, I am interested in {{ product.name }}"
                     target="_blank" class="cta-button" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                    <span>Wait, Chat on WhatsApp</span>
+                    <span>Chat on WhatsApp</span>
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-8.683-2.031-.967-.272-.297-.471-.446-.917-.446-.446 0-1.163.173-1.782.842-.619.669-2.375 2.301-2.375 5.613 0 3.311 2.424 6.517 2.769 6.995.346.479 4.771 7.245 11.558 10.089.851.356 2.053.868 2.37.893.315.025.753.076 1.503-.274.749-.348 1.758-1.012 2.006-1.987.248-.975.248-1.836.173-1.996Z" />
