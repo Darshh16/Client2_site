@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us | Riddhi Siddhi{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 4rem; background: #f8fafc;">
+    <div class="section-title">Contact Us</div>
+
+    <div
+        style="max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 3rem;">
+        <div
+            style="flex: 1; min-width: 300px; text-align: center; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #eee;">
+            <h3 style="color: #333; margin-bottom: 1rem;">Our Office</h3>
+            <p style="color: #666; line-height: 1.6;">
+                <strong>Address:</strong><br>
+                Gala No 4 and 4/c Bldg No 10, Abhilasha Ind Estate,<br>
+                Opp Golden Cheriot Hotel Near Hi Tech Tools,<br>
+                W.E Highway Vasai East, Maharashtra - 401208, India
+            </p>
+            <p style="color: #666; margin-top: 1rem;">
+                <strong>Phone:</strong> 98330 10277 / 98338 90090<br>
+                <strong>Email:</strong> riddhisiddhirollingshutter@yahoo.com
+            </p>
+        </div>
+    </div>
+
+    <div
+        style="max-width: 600px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee;">
+        <h3 style="text-align: center; margin-bottom: 2rem; color: #333;">Send us an Enquiry</h3>
+
+        <form id="contactForm" onsubmit="sendToWhatsApp(event)"
+            style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div>
+                <label style="display: block; margin-bottom: 0.5rem; color: #555; font-weight: 500;">Your Name</label>
+                <input type="text" id="name" required
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+
+            <div>
+                <label style="display: block; margin-bottom: 0.5rem; color: #555; font-weight: 500;">Phone
+                    Number</label>
+                <input type="tel" id="phone" required
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+
+            <div>
+                <label style="display: block; margin-bottom: 0.5rem; color: #555; font-weight: 500;">Requirement /
+                    Message</label>
+                <textarea id="message" rows="4" required
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+
+            <button type="submit" class="cta-button"
+                style="border:none; cursor:pointer; width: 100%; text-align: center; justify-content: center;">
+                Send via WhatsApp <span style="font-size: 1.2rem; margin-left: 0.5rem;">&#10148;</span>
+            </button>
+        </form>
+    </div>
+</section>
+
+<script>
+    function sendToWhatsApp(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+
+        const adminNumber = "919833010277";
+
+        const text = `*New Enquiry from Website*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Message:* ${message}`;
+
+        const url = `https://wa.me/${adminNumber}?text=${text}`;
+
+        window.open(url, '_blank');
+    }
+</script>
+{% endblock %}

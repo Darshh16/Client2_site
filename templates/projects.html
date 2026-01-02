@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Projects | Riddhi Siddhi{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 4rem;">
+    <div class="section-title">Latest Projects</div>
+
+    <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-item" onclick="openModal(this)">
+            <!-- Hidden Data for Modal -->
+            <div class="project-data" style="display:none;">
+                <span class="data-title">{{ project.title }}</span>
+                <span class="data-image">{{ project.image.url }}</span>
+                <span class="data-desc">{{ project.description }}</span>
+                <span class="data-client">{{ project.client_name }}</span>
+                <span class="data-location">{{ project.location }}</span>
+
+                <div class="data-gallery">
+                    {% for img in project.images.all %}
+                    <span data-url="{{ img.image.url }}"></span>
+                    {% endfor %}
+                </div>
+                <div class="data-videos">
+                    {% for vid in project.videos.all %}
+                    <span data-url="{{ vid.video.url }}" data-title="{{ vid.title }}"></span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="project-overlay">
+                <span>View Details</span>
+            </div>
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-thumb">
+            <div class="project-mini-info">
+                <h4>{{ project.title }}</h4>
+            </div>
+        </div>
+        {% empty %}
+        <p style="grid-column: 1/-1; text-align: center; color: #666;">No projects uploaded yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Project Modal -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img id="modalImg" src="" alt="Project Image">
+            </div>
+            <div class="modal-text">
+                <h2 id="modalTitle">Project Title</h2>
+                <div class="modal-meta">
+                    <span id="modalClientContainer" style="display:none; margin-right: 15px;"><strong>Client:</strong>
+                        <span id="modalClient"></span></span>
+                    <span id="modalLocationContainer" style="display:none;"><strong>Location:</strong> <span
+                            id="modalLocation"></span></span>
+                </div>
+                <div class="modal-desc" id="modalDesc"></div>
+
+                <!-- Gallery Section -->
+                <div id="modalGallerySection" style="margin-top: 2rem; display: none;">
+                    <h4 style="margin-bottom: 0.5rem; color: #333;">Gallery</h4>
+                    <div id="modalThumbnails" style="display: flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+                </div>
+
+                <!-- Videos Section -->
+                <div id="modalVideosSection" style="margin-top: 2rem; display: none;">
+                    <h4 style="margin-bottom: 0.5rem; color: #333;">Videos</h4>
+                    <div id="modalVideosList" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(element) {
+        const dataContainer = element.querySelector('.project-data');
+        const title = dataContainer.querySelector('.data-title').innerText;
+        const imageUrl = dataContainer.querySelector('.data-image').innerText;
+        const desc = dataContainer.querySelector('.data-desc').innerText;
+        const client = dataContainer.querySelector('.data-client').innerText;
+        const location = dataContainer.querySelector('.data-location').innerText;
+
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalImg').src = imageUrl;
+        document.getElementById('modalDesc').innerText = desc;
+
+        if (client) {
+            document.getElementById('modalClient').innerText = client;
+            document.getElementById('modalClientContainer').style.display = "inline-block";
+        } else {
+            document.getElementById('modalClientContainer').style.display = "none";
+        }
+
+        if (location) {
+            document.getElementById('modalLocation').innerText = location;
+            document.getElementById('modalLocationContainer').style.display = "inline-block";
+        } else {
+            document.getElementById('modalLocationContainer').style.display = "none";
+        }
+
+        // Handle Gallery
+        const gallerySpans = dataContainer.querySelectorAll('.data-gallery span');
+        const gallerySection = document.getElementById('modalGallerySection');
+        const thumbnailsContainer = document.getElementById('modalThumbnails');
+        thumbnailsContainer.innerHTML = ''; // Clear previous
+
+        // Add main image as first thumbnail
+        if (imageUrl) {
+            const mainThumb = document.createElement('img');
+            mainThumb.src = imageUrl;
+            mainThumb.style.cssText = "width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 1px solid #ddd; border-radius: 4px;";
+            mainThumb.onclick = function () { changeModalImage(imageUrl); };
+            thumbnailsContainer.appendChild(mainThumb);
+        }
+
+        if (gallerySpans.length > 0) {
+            gallerySection.style.display = 'block';
+            gallerySpans.forEach(span => {
+                const url = span.getAttribute('data-url');
+                const img = document.createElement('img');
+                img.src = url;
+                img.style.cssText = "width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 1px solid #ddd; border-radius: 4px;";
+                img.onclick = function () { changeModalImage(url); };
+                thumbnailsContainer.appendChild(img);
+            });
+        } else {
+            // If only main image, strictly speaking we might not need gallery section unless we want to show it as a thumb?
+            // Let's hide if no extra images
+            if (gallerySpans.length === 0) {
+                gallerySection.style.display = 'none';
+            }
+        }
+
+        // Handle Videos
+        const videoSpans = dataContainer.querySelectorAll('.data-videos span');
+        const videoSection = document.getElementById('modalVideosSection');
+        const videosList = document.getElementById('modalVideosList');
+        videosList.innerHTML = '';
+
+        if (videoSpans.length > 0) {
+            videoSection.style.display = 'block';
+            videoSpans.forEach(span => {
+                const url = span.getAttribute('data-url');
+                const vTitle = span.getAttribute('data-title');
+
+                const vidContainer = document.createElement('div');
+
+                if (vTitle) {
+                    const h5 = document.createElement('h5');
+                    h5.innerText = vTitle;
+                    h5.style.margin = "0 0 5px 0";
+                    vidContainer.appendChild(h5);
+                }
+
+                const video = document.createElement('video');
+                video.controls = true;
+                video.style.maxWidth = "100%";
+                video.style.borderRadius = "4px";
+
+                const source = document.createElement('source');
+                source.src = url;
+                source.type = "video/mp4";
+                video.appendChild(source);
+
+                vidContainer.appendChild(video);
+                videosList.appendChild(vidContainer);
+            });
+        } else {
+            videoSection.style.display = 'none';
+        }
+
+        document.getElementById('projectModal').style.display = "block";
+    }
+
+    function changeModalImage(src) {
+        document.getElementById('modalImg').src = src;
+    }
+
+    function closeModal() {
+        document.getElementById('projectModal').style.display = "none";
+        // Pause any playing videos
+        const videos = document.getElementById('modalVideosList').querySelectorAll('video');
+        videos.forEach(v => v.pause());
+    }
+
+    // Close on outside click
+    window.onclick = function (event) {
+        if (event.target == document.getElementById('projectModal')) {
+            closeModal();
+        }
+    }
+</script>
+
+<style>
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .project-item {
+        position: relative;
+        height: 250px;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-thumb {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .project-item:hover .project-thumb {
+        transform: scale(1.1);
+    }
+
+    .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+    }
+
+    .project-item:hover .project-overlay {
+        opacity: 1;
+    }
+
+    .project-overlay span {
+        color: #fff;
+        border: 2px solid #fff;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .project-mini-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 1rem;
+        color: #fff;
+        z-index: 1;
+    }
+
+    .project-mini-info h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 0;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 900px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .close-modal {
+        color: #aaa;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media(min-width: 768px) {
+        .modal-body {
+            flex-direction: row;
+        }
+
+        .modal-image-container {
+            width: 60%;
+            height: 500px;
+        }
+
+        .modal-text {
+            width: 40%;
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+    }
+
+    .modal-image-container {
+        width: 100%;
+        height: 300px;
+        background: #000;
+    }
+
+    .modal-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Keep original aspect ratio, don't crop */
+    }
+
+    .modal-text {
+        padding: 1.5rem;
+    }
+
+    .modal-meta {
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        color: #666;
+    }
+</style>
+{% endblock %}

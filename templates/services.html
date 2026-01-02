@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Services | Riddhi Siddhi Rolling Shutter{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section
+    style="background: linear-gradient(135deg, #020617 0%, #1e293b 100%); padding: 5rem 5%; text-align: center; color: #fff;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">Comprehensive Rolling Shutter Services</h1>
+        <div style="width: 80px; height: 4px; background: var(--accent-color); margin: 0 auto 1.5rem;"></div>
+        <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.8;">
+            From design to installation, maintenance to automation – we provide end-to-end solutions for all your
+            security needs. Our expert team ensures quality workmanship and reliable service at every step.
+        </p>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="section" style="padding-top: 4rem; background: #f8fafc;">
+    <div class="section-title">What We Offer</div>
+
+    <div class="grid" style="max-width: 1200px; margin: 0 auto;">
+        {% for service in services %}
+        <div class="card" style="text-align: center; padding: 2.5rem; transition: transform 0.3s ease;">
+            <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;">
+                {% if service.image %}
+                <img src="{{ service.image.url }}" alt="{{ service.title }}"
+                    style="width: 80px; height: 80px; object-fit: contain;">
+                {% else %}
+                <!-- SVG Icons for each service -->
+                <div
+                    style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                {% endif %}
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">{{ service.title }}</h3>
+            <p style="color: #666; line-height: 1.7;">{{ service.description }}</p>
+        </div>
+        {% empty %}
+        <!-- Default Services with Icons -->
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+            <div
+                style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                    <path
+                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                    </path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Manufacturing</h3>
+            <p style="color: #666; line-height: 1.7;">Premium quality rolling shutters manufactured using high-grade
+                galvanized steel and advanced machinery for maximum durability.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+            <div
+                style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                    <path
+                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                    </path>
+                </svg>
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Installation</h3>
+            <p style="color: #666; line-height: 1.7;">Professional installation by certified technicians ensuring
+                perfect fit, smooth operation, and compliance with safety standards.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+            <div
+                style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                </svg>
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Maintenance & Repair</h3>
+            <p style="color: #666; line-height: 1.7;">24/7 maintenance support and emergency repair services to keep
+                your security systems functioning optimally at all times.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+            <div
+                style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Automation Solutions</h3>
+            <p style="color: #666; line-height: 1.7;">Upgrade to smart automated systems with remote control, sensors,
+                and integration with your existing security infrastructure.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+            <div
+                style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+                </svg>
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Custom Fabrication</h3>
+            <p style="color: #666; line-height: 1.7;">Tailor-made solutions designed to fit your specific dimensions,
+                architectural requirements, and aesthetic preferences.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem;">
+            <div
+                style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.5rem;">Consultation & Design</h3>
+            <p style="color: #666; line-height: 1.7;">Free on-site consultation and expert design recommendations to
+                help you choose the perfect security solution for your needs.</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Process/How It Works Section -->
+<section style="background: #fff; padding: 5rem 5%;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #333;">Our Process</h2>
+        <div style="width: 60px; height: 4px; background: var(--accent-color); margin: 0 auto 3rem;"></div>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; position: relative;">
+            <!-- Step 1 -->
+            <div style="text-align: center; position: relative;">
+                <div
+                    style="width: 60px; height: 60px; background: var(--accent-color); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">
+                    1</div>
+                <h3 style="color: #333; margin-bottom: 0.5rem; font-size: 1.3rem;">Consultation</h3>
+                <p style="color: #666; line-height: 1.6;">We understand your requirements and conduct a site survey</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="text-align: center; position: relative;">
+                <div
+                    style="width: 60px; height: 60px; background: var(--accent-color); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">
+                    2</div>
+                <h3 style="color: #333; margin-bottom: 0.5rem; font-size: 1.3rem;">Design & Quote</h3>
+                <p style="color: #666; line-height: 1.6;">Custom design proposal with transparent pricing</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="text-align: center; position: relative;">
+                <div
+                    style="width: 60px; height: 60px; background: var(--accent-color); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">
+                    3</div>
+                <h3 style="color: #333; margin-bottom: 0.5rem; font-size: 1.3rem;">Manufacturing</h3>
+                <p style="color: #666; line-height: 1.6;">Precision fabrication using premium materials</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div style="text-align: center; position: relative;">
+                <div
+                    style="width: 60px; height: 60px; background: var(--accent-color); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">
+                    4</div>
+                <h3 style="color: #333; margin-bottom: 0.5rem; font-size: 1.3rem;">Installation</h3>
+                <p style="color: #666; line-height: 1.6;">Professional setup with quality checks and testing</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section
+    style="background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); padding: 5rem 5%; text-align: center;">
+    <div style="max-width: 700px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; color: #000; margin-bottom: 1rem; font-weight: 800;">Ready to Secure Your Space?
+        </h2>
+        <p style="color: #333; font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.7;">
+            Get a free consultation and quote for your rolling shutter requirements. Our experts are ready to help you
+            choose the perfect solution.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="{% url 'contact' %}" class="cta-button"
+                style="background: #000; color: #fff; border: 2px solid #000;">
+                Request a Quote
+            </a>
+            <a href="https://wa.me/919833010277?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20rolling%20shutter%20services."
+                target="_blank" class="cta-button" style="background: #25D366; color: #fff; border: 2px solid #25D366;">
+                💬 WhatsApp Us
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

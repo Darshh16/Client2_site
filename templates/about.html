@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us | Riddhi Siddhi Rolling Shutter{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 8rem; background: #f8fafc;">
+    <div class="section-title">About Riddhi Siddhi Rolling Shutter</div>
+
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+
+        <!-- Company Introduction with Image -->
+        <div
+            style="background: #fff; padding: 3rem; border-radius: 12px; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 2rem;">Our Story</h2>
+
+            <div class="about-grid"
+                style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start;">
+                <!-- Text Content -->
+                <div>
+                    <p style="color: #666; line-height: 1.8; font-size: 1.1rem; margin-bottom: 1rem;">
+                        With over <strong style="color: var(--accent-color);">10+ years of excellence</strong> in the
+                        rolling shutter and automation industry, Riddhi Siddhi Rolling Shutter has established itself as
+                        a trusted name in manufacturing and installation of premium security solutions. Our journey
+                        began with a simple yet powerful vision: to provide businesses and homes with the highest
+                        quality rolling shutters that combine uncompromising security, exceptional durability, and
+                        aesthetic appeal.
+                    </p>
+                    <p style="color: #666; line-height: 1.8; font-size: 1.1rem; margin-bottom: 1rem;">
+                        What started as a small workshop has evolved into a state-of-the-art manufacturing facility
+                        equipped with modern machinery and operated by a dedicated team of 20+ skilled professionals.
+                        Every member of our team brings specialized expertise – from design engineers who understand
+                        structural requirements to installation technicians who ensure perfect fitting and
+                        functionality.
+                    </p>
+                    <p style="color: #666; line-height: 1.8; font-size: 1.1rem; margin-bottom: 1rem;">
+                        Today, we stand proud as one of Maharashtra's leading manufacturers, serving a diverse clientele
+                        that includes residential complexes, commercial establishments, warehouses, factories, and
+                        retail outlets. Our comprehensive product range includes motorized rolling shutters, high-speed
+                        industrial doors, sliding gates, fire-rated shutters, and specialized security solutions – each
+                        engineered to meet the unique demands of different applications.
+                    </p>
+                    <p style="color: #666; line-height: 1.8; font-size: 1.1rem;">
+                        Our commitment goes beyond just manufacturing products. We believe in building lasting
+                        relationships with our clients through transparent communication, honest pricing, timely
+                        delivery, and unwavering after-sales support. This philosophy has earned us the trust of
+                        hundreds of satisfied customers and established Riddhi Siddhi as a name synonymous with quality
+                        and reliability in the industry.
+                    </p>
+                </div>
+
+                <!-- Small Factory Image -->
+                <div style="position: sticky; top: 2rem;">
+                    <img src="{% static 'images/about-factory.png' %}" alt="Our Manufacturing Facility"
+                        style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+            <div
+                style="background: linear-gradient(135deg, var(--accent-color) 0%, #d4a017 100%); padding: 2.5rem; border-radius: 12px; text-align: center; color: #000;">
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem;">10+</div>
+                <div style="font-size: 1.1rem; font-weight: 600;">Years of Experience</div>
+            </div>
+            <div
+                style="background: #fff; padding: 2.5rem; border-radius: 12px; text-align: center; border: 2px solid var(--accent-color);">
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent-color);">20+
+                </div>
+                <div style="font-size: 1.1rem; font-weight: 600; color: #333;">Expert Team Members</div>
+            </div>
+            <div
+                style="background: #fff; padding: 2.5rem; border-radius: 12px; text-align: center; border: 2px solid var(--accent-color);">
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent-color);">500+
+                </div>
+                <div style="font-size: 1.1rem; font-weight: 600; color: #333;">Projects Completed</div>
+            </div>
+        </div>
+
+        <!-- What We Do -->
+        <div
+            style="background: #fff; padding: 3rem; border-radius: 12px; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 2rem;">What We Do</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div>
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem; font-size: 1.3rem;">Manufacturing
+                        Excellence</h3>
+                    <p style="color: #666; line-height: 1.7;">We manufacture a comprehensive range of rolling shutters,
+                        gates, and industrial doors using state-of-the-art machinery and premium-grade materials. Every
+                        product undergoes rigorous quality checks to ensure durability and performance.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem; font-size: 1.3rem;">Professional
+                        Installation</h3>
+                    <p style="color: #666; line-height: 1.7;">Our skilled installation team ensures precise fitting and
+                        optimal functionality. We handle projects of all sizes, from residential properties to
+                        large-scale industrial complexes, with equal dedication and expertise.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem; font-size: 1.3rem;">Maintenance &
+                        Support</h3>
+                    <p style="color: #666; line-height: 1.7;">We provide comprehensive after-sales support including
+                        regular maintenance, repairs, and 24/7 emergency services. Our commitment doesn't end with
+                        installation – we're your long-term security partner.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Areas -->
+        <div
+            style="background: #fff; padding: 3rem; border-radius: 12px; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 2rem;">Pan-India Service Network</h2>
+            <p style="color: #666; line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem;">
+                Our extensive service network spans across Maharashtra and neighboring states, ensuring prompt delivery
+                and installation services. We've successfully completed projects across:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div
+                    style="padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: #333;">Metropolitan Cities</strong>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Major urban centers and business hubs
+                    </p>
+                </div>
+                <div
+                    style="padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: #333;">Industrial Zones</strong>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Manufacturing and warehouse districts
+                    </p>
+                </div>
+                <div
+                    style="padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: #333;">Commercial Areas</strong>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Shopping complexes and retail zones
+                    </p>
+                </div>
+                <div
+                    style="padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: #333;">Residential Sectors</strong>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Housing societies and gated
+                        communities</p>
+                </div>
+                <div
+                    style="padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: #333;">Tier-2 Cities</strong>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Emerging urban centers</p>
+                </div>
+                <div
+                    style="padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                    <strong style="color: #333;">Rural Projects</strong>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Agricultural and remote installations
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <div
+            style="background: #fff; padding: 3rem; border-radius: 12px; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2 style="color: #333; margin-bottom: 1.5rem; font-size: 2rem;">Why Choose Riddhi Siddhi?</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 1rem 0; border-bottom: 1px solid #eee; color: #666; font-size: 1.05rem;">
+                    <strong style="color: var(--accent-color);">✓</strong> <strong>Quality Assurance:</strong> We use
+                    only premium-grade galvanized steel and components from trusted suppliers
+                </li>
+                <li style="padding: 1rem 0; border-bottom: 1px solid #eee; color: #666; font-size: 1.05rem;">
+                    <strong style="color: var(--accent-color);">✓</strong> <strong>Customization:</strong> Every product
+                    is tailored to your specific requirements and dimensions
+                </li>
+                <li style="padding: 1rem 0; border-bottom: 1px solid #eee; color: #666; font-size: 1.05rem;">
+                    <strong style="color: var(--accent-color);">✓</strong> <strong>Competitive Pricing:</strong> Direct
+                    manufacturer pricing with no middleman markup
+                </li>
+                <li style="padding: 1rem 0; border-bottom: 1px solid #eee; color: #666; font-size: 1.05rem;">
+                    <strong style="color: var(--accent-color);">✓</strong> <strong>Timely Delivery:</strong> We respect
+                    your time and ensure on-schedule project completion
+                </li>
+                <li style="padding: 1rem 0; border-bottom: 1px solid #eee; color: #666; font-size: 1.05rem;">
+                    <strong style="color: var(--accent-color);">✓</strong> <strong>Certified Team:</strong> Our 20+
+                    member team includes certified engineers and experienced technicians
+                </li>
+                <li style="padding: 1rem 0; color: #666; font-size: 1.05rem;">
+                    <strong style="color: var(--accent-color);">✓</strong> <strong>Warranty & Support:</strong>
+                    Comprehensive warranty coverage and lifetime maintenance support
+                </li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <div
+            style="text-align: center; padding: 3rem; background: linear-gradient(135deg, #020617 0%, #1e293b 100%); border-radius: 12px; color: #fff;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Secure Your Space?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #cbd5e1;">Let's discuss your requirements and
+                provide you with the perfect security solution.</p>
+            <a href="{% url 'contact' %}" class="cta-button"
+                style="background: var(--accent-color); color: #000; border: none; padding: 1rem 3rem; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-block; border-radius: 6px;">
+                Get in Touch
+            </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div> <!-- Overlay for text readability -->
+    <div class="hero-content">
+        <div class="breadcrumbs" style="color: rgba(255,255,255,0.8);">Home &gt; Services &gt; Industrial Rolling
+            Shutters</div>
+        <h1>Heavy Duty<br>Rolling Shutters</h1>
+        <div class="hero-divider"></div>
+        <p>
+            Riddhi Siddhi Rolling Shutters is a leading enterprise in the production and supply
+            of premium automation gates and shutter systems. Secure your business with
+            industry-grade reliability.
+        </p>
+    </div>
+</section>
+
+<!-- Featured Products Categories -->
+<section id="products" class="section">
+    <div class="section-title">Our Solutions</div>
+
+    {% for category in categories %}
+    <div style="margin-bottom: 4rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="font-size: 2rem; color: #333; margin: 0;">{{ category.name }}</h3>
+            <a href="{% url 'category_detail' category.slug %}"
+                style="color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 0.9rem;">View All
+                {{ category.name }} &rarr;</a>
+        </div>
+        <div class="grid">
+            {% for product in category.products.all|slice:":3" %}
+            <a href="{% url 'product_detail' product.slug %}" style="text-decoration: none;">
+                <div class="card">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/400x300/f5f5f5/333?text={{ product.name|urlencode }}{% endif %}"
+                        alt="{{ product.name }}" class="card-image">
+                    <div class="card-content">
+                        <div class="card-title">{{ product.name }}</div>
+                        <div class="card-text">{{ product.description|truncatewords:15 }}</div>
+                    </div>
+                </div>
+            </a>
+            {% empty %}
+            <p style="color: #64748b;">No products added in this category yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+</section>
+
+<!-- Clients Section -->
+<section id="clients" class="clients-section">
+    <div class="section-title" style="color: #fff;">Trusted By Industry Leaders</div>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            {% for client in clients %}
+            <img src="{{ client.logo.url }}" alt="{{ client.name }}" class="client-logo">
+            {% endfor %}
+            <!-- Duplicate for seamless loop -->
+            {% for client in clients %}
+            <img src="{{ client.logo.url }}" alt="{{ client.name }}" class="client-logo">
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Key Features with Icons -->
+<section class="section" style="background: #f8fafc; padding: 6rem 5%; text-align: center;">
+    <div class="section-title" style="color: #333;">Why Industry Leaders Choose Us</div>
+    <div class="grid" style="gap: 3rem;">
+        <div class="feature-item" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <div
+                style="width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <!-- Robust/Durable Icon -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color);">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.25rem; color: #333; margin: 0;">Maximum Durability</h3>
+            <p style="color: #666; font-size: 0.95rem; max-width: 300px;">Built with high-grade galvanized steel to
+                withstand harsh industrial environments.</p>
+        </div>
+
+        <div class="feature-item" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <div
+                style="width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <!-- Automation Icon -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color);">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.25rem; color: #333; margin: 0;">Smart Automation</h3>
+            <p style="color: #666; font-size: 0.95rem; max-width: 300px;">Integrated with advanced motor systems for
+                seamless remote and manual operation.</p>
+        </div>
+
+        <div class="feature-item" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <div
+                style="width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <!-- Warranty/Support Icon -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color);">
+                    <path
+                        d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+                    </path>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.25rem; color: #333; margin: 0;">Lifetime Support</h3>
+            <p style="color: #666; font-size: 0.95rem; max-width: 300px;">Comprehensive warranty and 24/7 maintenance
+                support for peace of mind.</p>
+        </div>
+
+        <div class="feature-item" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <div
+                style="width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <!-- Custom/Tailored Icon -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color);">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+                </svg>
+            </div>
+            <h3 style="font-size: 1.25rem; color: #333; margin: 0;">Custom Tailored</h3>
+            <p style="color: #666; font-size: 0.95rem; max-width: 300px;">Precision engineered to fit any specific
+                dimensions or architectural requirements.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section style="background: var(--accent-color); padding: 5rem 5%; text-align: center;">
+    <h2 style="font-size: 2.5rem; color: #000; margin-bottom: 1rem; font-weight: 800; text-transform: uppercase;">Need a
+        Custom Solution?</h2>
+    <p
+        style="color: #333; font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Whether it's a warehouse, storefront, or factory, we engineer the perfect security barrier for your needs.
+    </p>
+    <a href="{% url 'contact' %}" class="cta-button" style="background: #000; color: #fff; border-color: #000;">
+        Contact Us Now
+    </a>
+</section>
+
+{% endblock %}

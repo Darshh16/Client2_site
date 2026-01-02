@@ -1,0 +1,29 @@
+template_content = r"""{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} | Riddhi Siddhi{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 8rem;">
+    <div class="section-title">{{ category.name }}</div>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+        <p style="text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem;">Explore our range of {{ category.name }}.</p>
+        <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+            {% for product in products %}
+            <a href="{% url 'product_detail' product.slug %}" style="text-decoration: none;">
+                <div class="card" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease; height: 100%; display: flex; flex-direction: column;">
+                    <div style="height: 250px; overflow: hidden; position: relative;">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">{% else %}<div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; color: #999;">No Image</div>{% endif %}</div>
+                    <div style="padding: 1.5rem; flex: 1; display: flex; flex-direction: column;"><div style="font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 0.5rem;">{{ product.name }}</div><div style="font-size: 0.95rem; color: #666; margin-bottom: 1rem; flex: 1;">{{ product.description|truncatewords:20 }}</div><div style="color: var(--accent-color); font-weight: 600; font-size: 0.9rem;">View Details &rarr;</div></div>
+                </div>
+            </a>
+            {% empty %}
+            <p style="grid-column: 1/-1; text-align: center; color: #666;">No products found in this category.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<style>.card:hover{transform:translateY(-5px);}.card:hover img{transform:scale(1.1);}</style>
+{% endblock %}"""
+
+with open(r'c:\coding\Riddhi Siddhi Rolling Shutter\templates\category_detail.html', 'w', encoding='utf-8') as f:
+    f.write(template_content)
+print("File written successfully")
