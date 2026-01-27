@@ -30,7 +30,7 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 # CSRF Trusted Origins - IMPORTANT for forms to work
-CSRF_TRUSTED_ORIGINS = ['*'
+CSRF_TRUSTED_ORIGINS = [
     'https://*.onrender.com',
     # Add your GoDaddy domain here after you set it up, e.g.:
     # 'https://riddhisiddhirollingshutter.com',
