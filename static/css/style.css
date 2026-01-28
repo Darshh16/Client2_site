@@ -151,6 +151,7 @@ header {
     display: none;
     flex-direction: column;
     z-index: 1100;
+    list-style: none;
 }
 
 .dropdown-menu li {
@@ -586,9 +587,12 @@ header {
     }
 
     .nav-link {
-        display: block;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem 5%;
         width: 100%;
+        box-sizing: border-box;
     }
 
     /* Dropdown on Mobile - Accordion Style */
